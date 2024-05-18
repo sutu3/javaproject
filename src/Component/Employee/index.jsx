@@ -162,7 +162,6 @@ const Index = () => {
       }}>
       <div style={{ padding: "10px", flexDirection:'col'}} className="flex flex-col">
         <span style={{ fontWeight: "bold"}}>Employee name: {el.name}</span>
-       <span style={{ fontWeight: "bold"}}>Department id: {el.idDepartment}</span>
       </div>
     </li>
 ))}

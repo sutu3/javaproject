@@ -236,9 +236,6 @@ const Index = () => {
                 <span style={{ fontWeight: "bold" }}>
                   Relative Age: {el.age}
                 </span>
-                <span style={{ fontWeight: "bold" }}>
-                  Employee ID: {el.idEmployee}
-                </span>
               </div>
             </li>
           ))}
