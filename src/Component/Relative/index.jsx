@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import RelativeSlice,{AddRelative,DeteleRelative,FixRelative} from "../redux/RelativeSlice";
+import {AddRelative,DeteleRelative,FixRelative} from "../redux/RelativeSlice";
 import { Relative, Employee, RemainngRelative } from "../redux/Selection";
 const Index = () => {
   const dispatch = useDispatch();

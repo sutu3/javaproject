@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useDispatch,useSelector } from "react-redux";
 import {Department,RemainngEmployee} from '../redux/Selection'
-import EmployeeSlice,{AddEmployee,Deteleemployee,FixEmployee} from '../redux/EmployeeSlice'
+import {AddEmployee,Deteleemployee,FixEmployee} from '../redux/EmployeeSlice'
 const Index = () => {
   const Employee1=useSelector(RemainngEmployee)
   // console.log(Employee2)
