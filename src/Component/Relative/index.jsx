@@ -18,7 +18,7 @@ const Index = () => {
   const [name, setname] = useState("");
   const [age, setage] = useState("");
   const dsemployee = (
-    <select
+    <select 
       onChange={(e) => {
         setidEmployee(e.target.value);
       }}
@@ -156,7 +156,7 @@ const Index = () => {
             className="border-black border-2 border-solid w-60 h-10 p-3 rounded-md"
             placeholder="Enter Your ID Relative"
           />
-          <input
+          <input value={name}
             type="text"
             onChange={(e) => {
               setname(e.target.value);
@@ -165,7 +165,7 @@ const Index = () => {
             placeholder="Enter Your name Relative"
           />
           <div className="flex gap-5">
-            <input
+            <input value={age}
               type="text"
               onChange={(e) => {
                 setage(parseInt(e.target.value));
