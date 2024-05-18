@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import RelativeSlice from "../redux/RelativeSlice";
-import { Relative, Employee,RemainngRelative } from "../redux/Selection";
+import RelativeSlice,{AddRelative,DeteleRelative,FixRelative} from "../redux/RelativeSlice";
+import { Relative, Employee, RemainngRelative } from "../redux/Selection";
 const Index = () => {
   const dispatch = useDispatch();
   const relative1 = useSelector(Relative);
   const relative = useSelector(RemainngRelative);
-  console.log(relative1)
+  console.log(relative1);
   const employee = useSelector(Employee);
   const [Them, setthem] = useState(false);
   const [Xoa, setxoa] = useState(false);
@@ -18,21 +18,14 @@ const Index = () => {
   const [name, setname] = useState("");
   const [age, setage] = useState("");
   const dsemployee = (
-    <select onChange={(e) => {
-            setidEmployee(e.target.value);
-          }}
+    <select
+      onChange={(e) => {
+        setidEmployee(e.target.value);
+      }}
       className="w-40 p-2 h-10 border-2 border-black border-solid
            overflow-scroll rounded-lg"
     >
-      {employee.length != 0 && (
-        <option
-          
-          value=""
-        >
-          {" "}
-          --chọn Employee--
-        </option>
-      )}
+      {employee.length != 0 && <option value=""> --chọn Employee--</option>}
       {employee.map((el) => (
         <option value={el.id} key={el.id}>
           {el.name}
@@ -109,12 +102,12 @@ const Index = () => {
           {dsemployee}
           <button
             onClick={() => {
+              console.log(idEmployee)
               dispatch(
-                RelativeSlice.actions.addRelative({
-                  id: relative.length + 1,
+                AddRelative({
                   name: name,
                   age: age,
-                  IDEmployee: idEmployee,
+                  idEmployee: idEmployee,
                 })
               );
               setage("");
@@ -142,7 +135,7 @@ const Index = () => {
           <button
             onClick={() => {
               console.log(typeof id);
-              dispatch(RelativeSlice.actions.removeRelative(id));
+              dispatch(DeteleRelative(id));
               setid("");
             }}
             className="h-10 w-32 border-black uppercase border-2 hover:font-bold
@@ -155,6 +148,7 @@ const Index = () => {
       {Sua && (
         <div className="flex flex-col gap-5 h-20 m-5 -translate-y-10">
           <input
+          value={id}
             type="text"
             onChange={(e) => {
               setid(e.target.value);
@@ -185,7 +179,7 @@ const Index = () => {
           <button
             onClick={() => {
               dispatch(
-                RelativeSlice.actions.fixRelative({
+                FixRelative({
                   id: id,
                   name: name,
                   age: age,
@@ -214,9 +208,10 @@ const Index = () => {
           }}
         >
           {relative.map((el) => (
-            <li onClick={()=>{
-              setid(el.id);
-            }}
+            <li
+              onClick={() => {
+                setid(el.id);
+              }}
               key={el.id}
               style={{
                 display: "flex",
@@ -242,7 +237,7 @@ const Index = () => {
                   Relative Age: {el.age}
                 </span>
                 <span style={{ fontWeight: "bold" }}>
-                  Employee ID: {el.IDEmployee}
+                  Employee ID: {el.idEmployee}
                 </span>
               </div>
             </li>

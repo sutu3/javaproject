@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useDispatch,useSelector } from "react-redux";
 import {Department,RemainngEmployee} from '../redux/Selection'
-import EmployeeSlice from '../redux/EmployeeSlice'
+import EmployeeSlice,{AddEmployee,Deteleemployee,FixEmployee} from '../redux/EmployeeSlice'
 const Index = () => {
   const Employee1=useSelector(RemainngEmployee)
   // console.log(Employee2)
@@ -73,11 +73,15 @@ const Index = () => {
           {dsdepartment}
           
           <button onClick={()=>{
-            console.log(idDepartment)
-            dispatch(EmployeeSlice.actions.addEmployee({
-              id:Employee1.length+1,
+            // dispatch(EmployeeSlice.actions.addEmployee({
+            //   id:Employee1.length+1,
+            //   name:name,
+            //   idDepartment:idDepartment
+            // }))
+            dispatch(AddEmployee({
               name:name,
-              idDepartment:idDepartment
+              idDepartment:idDepartment,
+              relatives:[]
             }))
             setname('')
             setIdDepartment('')
@@ -96,7 +100,7 @@ const Index = () => {
           placeholder="Enter Your ID Employee" />
           
           <button onClick={()=>{
-            dispatch(EmployeeSlice.actions.removeEmployee(parseInt(id)));
+            dispatch(Deteleemployee(parseInt(id)));
             setid('')
             setIdDepartment('')
           }}
@@ -118,7 +122,7 @@ const Index = () => {
           placeholder="Enter Your name Employee" />
           {dsdepartment}
           <button onClick={()=>{
-            dispatch(EmployeeSlice.actions.fixEmployee({
+            dispatch(FixEmployee({
               id:id,
               name:name,
               IdDepartment:idDepartment

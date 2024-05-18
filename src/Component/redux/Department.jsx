@@ -37,6 +37,7 @@ const DepartmentSlice = createSlice({
         state.department = action.payload;
       })
       .addCase(AddDepartment.fulfilled, (state, action) => {
+        console.log(action.payload)
         state.department.push(action.payload);
       })
       .addCase(DeteleDepartment.fulfilled, (state, action) => {
@@ -80,7 +81,7 @@ export const FetchDepartment = createAsyncThunk(
 export const AddDepartment = createAsyncThunk(
   "department/AddDepartment",
   async (data1) => {
-    const res = await fetch(`${url}`, {
+    const res = await fetch(`${url}/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -94,7 +95,8 @@ export const AddDepartment = createAsyncThunk(
 export const DeteleDepartment = createAsyncThunk(
   "department/DeteleDepartment",
   async (data1, { dispatch, getState }) => {
-    const res = await fetch(`${url}`, {
+    //http://localhost:8080/api/department//{truyền
+    const res = await fetch(`${url}/delete/${data1}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -113,12 +115,15 @@ export const DeteleDepartment = createAsyncThunk(
 export const FixDepartment = createAsyncThunk(
   "department/FixDepartment",
   async (data1) => {
-    const res = await fetch(`${url}/${data1.id}`, {
+    const res = await fetch(`${url}/update/${data1.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data1),
+      body: JSON.stringify({
+        name:data1.name,
+        employees:[],
+      }),
     });
     const data = await res.json();
     return data;

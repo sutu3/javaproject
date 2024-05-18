@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import {useDispatch,useSelector} from 'react-redux'
-import DepartmentSlice,{removeEmployeebyDepartment} from '../redux/Department'
+import DepartmentSlice,{FixDepartment,AddDepartment,DeteleDepartment} from '../redux/Department'
 import {Department} from '../redux/Selection.jsx'
 const Index = () => {
   const department=useSelector(Department);
@@ -55,9 +55,13 @@ const Index = () => {
           className="border-black border-2 border-solid w-60 h-10 p-3 rounded-md"
           placeholder="Enter Your name Department" />
           <button onClick={()=>{
-            dispatch(DepartmentSlice.actions.addDepartment({
-              id:(department.length+1),
-              name:name
+            // dispatch(DepartmentSlice.actions.addDepartment({
+            //   id:(department.length+1),
+            //   name:name
+            // }))
+            dispatch(AddDepartment({
+              name:name,
+              employees:[]
             }))
             setname('')
           }}
@@ -75,7 +79,7 @@ const Index = () => {
           <button onClick={()=>{
           //dispatch(DepartmentSlice.actions.removeDepartment(id))
           console.log(id) 
-          dispatch(removeEmployeebyDepartment(id))
+          dispatch(DeteleDepartment(id))
           setid('')
           }}
            className="h-10 w-32 border-black uppercase border-2 hover:font-bold
@@ -95,10 +99,11 @@ const Index = () => {
           className="border-black border-2 border-solid w-60 h-10 p-3 rounded-md"
           placeholder="Enter Your name Department" />
           <button onClick={()=>{
-            dispatch(DepartmentSlice.actions.fixDepartment(
+            dispatch(FixDepartment(
               {
               id: id,
-              name: name}
+              name: name
+              }
               ))
             console.log(id)
             setid('')
