@@ -37,7 +37,7 @@ const DepartmentSlice = createSlice({
         state.department = action.payload;
       })
       .addCase(AddDepartment.fulfilled, (state, action) => {
-        console.log(action.payload)
+        console.log(action.payload);
         state.department.push(action.payload);
       })
       .addCase(DeteleDepartment.fulfilled, (state, action) => {
@@ -121,8 +121,8 @@ export const FixDepartment = createAsyncThunk(
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name:data1.name,
-        employees:[],
+        name: data1.name,
+        employees: [],
       }),
     });
     const data = await res.json();

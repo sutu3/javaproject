@@ -35,18 +35,20 @@ const EmployeeSlice = createSlice({
         state.employee.push(action.payload);
       })
       .addCase(Deteleemployee.fulfilled, (state, action) => {
-         state.employee = state.employee.filter((el) => el.id !== action.payload);
+        state.employee = state.employee.filter(
+          (el) => el.id !== action.payload
+        );
       })
       .addCase(FixEmployee.fulfilled, (state, action) => {
         state.employee = state.employee.map((el) =>
-        el.id === parseInt(action.payload.id)
-          ? {
-              ...el,
-              name: action.payload.name,
-              IdDepartment: action.payload.IdDepartment,
-            }
-          : el
-      );
+          el.id === parseInt(action.payload.id)
+            ? {
+                ...el,
+                name: action.payload.name,
+                IdDepartment: action.payload.IdDepartment,
+              }
+            : el
+        );
       });
   },
 });
@@ -116,10 +118,9 @@ export const FixEmployee = createAsyncThunk(
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name:data1.name,
-        idDepartment:data1.IdDepartment,
+        name: data1.name,
+        idDepartment: data1.IdDepartment,
       }),
-      
     });
     const data = await res.json();
     return data;
