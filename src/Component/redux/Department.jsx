@@ -1,6 +1,7 @@
 const url = "http://26.232.136.42:8080/api/department";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import EmployeeSlice from "./EmployeeSlice";
+import EmployeeSlice,{removeRelativebyEmployee} from "./EmployeeSlice";
+im
 const DepartmentSlice = createSlice({
   name: "department",
   initialState: {
@@ -96,7 +97,7 @@ export const DeteleDepartment = createAsyncThunk(
   "department/DeteleDepartment",
   async (data1, { dispatch, getState }) => {
     //http://localhost:8080/api/department//{truyền
-    const res = await fetch(`${url}/delete/${data1}`, {
+    const res = await fetch(`${url}/deleteall/${data1}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -106,8 +107,7 @@ export const DeteleDepartment = createAsyncThunk(
     const data = await res.json();
     getState().employee.employee.map((el) => {
       parseInt(el.idDepartment) === parseInt(data)
-        ? dispatch(EmployeeSlice.actions.removeEmployee(parseInt(el.id)))
-        : el;
+        ? dispatch(removeRelativebyEmployee(parseInt(el.id))): el;
     });
     return data;
   }

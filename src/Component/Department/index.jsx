@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Input from "../Input/index.jsx";
+import Button1 from "../Button/Button1.jsx";
+import Button2 from "../Button/Button2.jsx";
 import DepartmentSlice, {
   FixDepartment,
   AddDepartment,
@@ -23,140 +26,72 @@ const Index = () => {
     >
       <h1>Department</h1>
       <div className="flex gap-5 w-full h-12 m-5">
-        <button
-          className="h-full w-32 border-black uppercase border-2 hover:font-bold
-          border-solid rounded-lg active:bg-slate-600 active:text-white"
-          onClick={() => {
-            setthem(!Them);
-            setsua(false);
-            setxoa(false);
-            setid("");
-            setname("");
-          }}
-        >
-          Thêm
-        </button>
-        <button
-          className="h-full w-32 border-black uppercase border-2 hover:font-bold
-          border-solid rounded-lg active:bg-slate-600 active:text-white"
-          onClick={() => {
-            setxoa(!Xoa);
-            setthem(false);
-            setsua(false);
-            setid("");
-            setname("");
-          }}
-        >
-          Xóa
-        </button>
-        <button
-          className="h-full w-32 border-black uppercase border-2 hover:font-bold
-          border-solid rounded-lg active:bg-slate-600 active:text-white"
-          onClick={() => {
-            setsua(!Sua);
-            setthem(false);
-            setxoa(false);
-            setid("");
-            setname("");
-          }}
-        >
-          Sửa
-        </button>
+        <Button1
+          value="Thêm"
+          value1={Them}
+          arr={[setid, setname]}
+          setthem={setthem}
+          setxoa={setxoa}
+          setsua={setsua}
+        />
+        <Button1
+          value="Xóa"
+          value1={Xoa}
+          arr={[setid, setname]}
+          setthem={setthem}
+          setxoa={setxoa}
+          setsua={setsua}
+        />
+        <Button1
+          value="Sửa"
+          value1={Sua}
+          arr={[setid, setname]}
+          setthem={setthem}
+          setxoa={setxoa}
+          setsua={setsua}
+        />
       </div>
       {Them && (
         <div className="flex flex-col gap-5 h-20 m-5">
-          <input
-            value={name}
-            type="text"
-            onChange={(e) => {
-              setname(e.target.value);
-            }}
-            className="border-black border-2 border-solid w-60 h-10 p-3 rounded-md"
+          <Input
+            option={name}
+            setOption={setname}
             placeholder="Enter Your name Department"
           />
-          <button
-            onClick={() => {
-              // dispatch(DepartmentSlice.actions.addDepartment({
-              //   id:(department.length+1),
-              //   name:name
-              // }))
-              dispatch(
-                AddDepartment({
-                  name: name,
-                  employees: [],
-                })
-              );
-              setname("");
-            }}
-            className="h-10 w-32 border-black uppercase border-2 hover:font-bold
-          border-solid rounded-lg active:bg-slate-600 active:text-white"
-          >
-            submit
-          </button>
+          <Button2
+            action={AddDepartment}
+            arr={[setname]}
+            object={{ name: name, employees: [] }}
+          />
         </div>
       )}
       {Xoa && (
         <div className="flex flex-col gap-5 h-20 m-5">
-          <input
-            value={id}
-            type="text"
-            onChange={(e) => {
-              setid(e.target.value);
-            }}
-            className="border-black border-2 border-solid w-60 h-10 p-3 rounded-md"
+          <Input
+            option={id}
+            setOption={setid}
             placeholder="Enter Your ID Department"
           />
-          <button
-            onClick={() => {
-              //dispatch(DepartmentSlice.actions.removeDepartment(id))
-              console.log(id);
-              dispatch(DeteleDepartment(id));
-              setid("");
-            }}
-            className="h-10 w-32 border-black uppercase border-2 hover:font-bold
-          border-solid rounded-lg active:bg-slate-600 active:text-white"
-          >
-            submit
-          </button>
+          <Button2 action={DeteleDepartment} arr={[setid]} object={id} />
         </div>
       )}
       {Sua && (
         <div className="flex flex-col gap-5 h-20 m-5">
-          <input
-            value={id}
-            type="text"
-            onChange={(e) => {
-              setid(e.target.value);
-            }}
-            className="border-black border-2 border-solid w-60 h-10 p-3 rounded-md"
+          <Input
+            option={id}
+            setOption={setid}
             placeholder="Enter Your ID Department"
           />
-          <input
-            value={name}
-            type="text"
-            onChange={(e) => {
-              setname(e.target.value);
-            }}
-            className="border-black border-2 border-solid w-60 h-10 p-3 rounded-md"
+          <Input
+            option={name}
+            setOption={setname}
             placeholder="Enter Your name Department"
           />
-          <button
-            onClick={() => {
-              dispatch(
-                FixDepartment({
-                  id: id,
-                  name: name,
-                })
-              );
-              console.log(id);
-              setid("");
-              setname("");
-            }}
-            className="h-10 w-32 border-black uppercase border-2 hover:font-bold
-          border-solid rounded-lg active:bg-slate-600 active:text-white"
-          >
-            submit
-          </button>
+          <Button2
+            action={FixDepartment}
+            arr={[setid, setname]}
+            object={{ id: id, name: name }}
+          />
         </div>
       )}
       <div className=" translate-y-20">

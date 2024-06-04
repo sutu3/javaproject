@@ -92,7 +92,7 @@ export const AddEmployee = createAsyncThunk(
 export const Deteleemployee = createAsyncThunk(
   "employee/Deteleemployee",
   async (data1, { dispatch, getState }) => {
-    const res = await fetch(`${url}/delete/${data1}`, {
+    const res = await fetch(`${url}/deleteall/${data1}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -100,11 +100,7 @@ export const Deteleemployee = createAsyncThunk(
       body: JSON.stringify(data1),
     });
     const data = await res.json();
-    getState().relative.relative.map((el) => {
-      parseInt(el.IDEmployee) === parseInt(data1)
-        ? dispatch(RelativeSlice.actions.removeRelative(parseInt(el.id)))
-        : el;
-    });
+    dispatch(removeRelativebyEmployee(parseInt(data)))
     return data;
   }
 );

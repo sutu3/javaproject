@@ -7,6 +7,9 @@ import {
   DeteleRelative,
   FixRelative,
 } from "../redux/RelativeSlice";
+import Button1 from "../Button/Button1";
+import Button2 from "../Button/Button2";
+import Input from "../Input";
 import { Relative, Employee, RemainngRelative } from "../redux/Selection";
 const Index = () => {
   const dispatch = useDispatch();
@@ -41,167 +44,86 @@ const Index = () => {
     <div className="w-full flex flex-col gap-5 gap-5 border-2 border-black border-solid">
       <h1>Relative</h1>
       <div className="flex gap-5 w-full h-12  m-5">
-        <button
-          className="h-full w-32 border-black uppercase border-2 hover:font-bold
-          border-solid rounded-lg active:bg-slate-600 active:text-white"
-          onClick={() => {
-            setthem(!Them);
-            setsua(false);
-            setxoa(false);
-            setage("");
-            setname("");
-            setidEmployee("");
-          }}
-        >
-          Thêm
-        </button>
-        <button
-          className="h-full w-32 border-black uppercase border-2 hover:font-bold
-          border-solid rounded-lg active:bg-slate-600 active:text-white"
-          onClick={() => {
-            setxoa(!Xoa);
-            setthem(false);
-            setsua(false);
-            setid("");
-          }}
-        >
-          Xóa
-        </button>
-        <button
-          className="h-full w-32 border-black uppercase border-2 hover:font-bold
-          border-solid rounded-lg active:bg-slate-600 active:text-white"
-          onClick={() => {
-            setsua(!Sua);
-            setthem(false);
-            setxoa(false);
-            setage("");
-            setname("");
-            setid("");
-            setidEmployee("");
-          }}
-        >
-          Sửa
-        </button>
+        <Button1
+          value="Thêm"
+          value1={Them}
+          arr={[setid, setname, setage, setidEmployee]}
+          setthem={setthem}
+          setxoa={setxoa}
+          setsua={setsua}
+        />
+        <Button1
+          value="Xóa"
+          value1={Xoa}
+          arr={[setid, setname, setage, setidEmployee]}
+          setthem={setthem}
+          setxoa={setxoa}
+          setsua={setsua}
+        />
+        <Button1
+          value="Sửa"
+          value1={Sua}
+          arr={[setid, setname, setage, setidEmployee]}
+          setthem={setthem}
+          setxoa={setxoa}
+          setsua={setsua}
+        />
       </div>
       {Them && (
         <div className="flex flex-col gap-5 h-20 m-5 -translate-y-5">
-          <input
-            value={name}
-            type="text"
-            onChange={(e) => {
-              setname(e.target.value);
-            }}
-            className="border-black border-2 border-solid w-60 h-10 p-3 rounded-md"
+          <Input
+            option={name}
+            setOption={setname}
             placeholder="Enter Your name Relative"
           />
-          <input
-            value={age}
-            type="text"
-            onChange={(e) => {
-              setage(parseInt(e.target.value));
-            }}
-            className="border-black border-2 border-solid w-60 h-10 p-3 rounded-md"
+          <Input
+            option={age}
+            setOption={setage}
             placeholder="Enter Your Age Relative"
           />
           {dsemployee}
-          <button
-            onClick={() => {
-              console.log(idEmployee);
-              dispatch(
-                AddRelative({
-                  name: name,
-                  age: age,
-                  idEmployee: idEmployee,
-                })
-              );
-              setage("");
-              setname("");
-              setidEmployee("");
-            }}
-            className="h-10 w-32 border-black uppercase border-2 hover:font-bold
-          border-solid rounded-lg active:bg-slate-600 active:text-white"
-          >
-            submit
-          </button>
+          <Button2
+            arr={[setage, setname, setidEmployee]}
+            action={AddRelative}
+            object={{ name: name, age: age, idEmployee: idEmployee }}
+          />
         </div>
       )}
       {Xoa && (
         <div className="flex flex-col gap-5 h-20 m-5">
-          <input
-            value={id}
-            type="text"
-            onChange={(e) => {
-              setid(e.target.value);
-            }}
-            className="border-black border-2 border-solid w-60 h-10 p-3 rounded-md"
+          <Input
+            option={id}
+            setOption={setid}
             placeholder="Enter Your ID Relative"
           />
-          <button
-            onClick={() => {
-              console.log(typeof id);
-              dispatch(DeteleRelative(id));
-              setid("");
-            }}
-            className="h-10 w-32 border-black uppercase border-2 hover:font-bold
-          border-solid rounded-lg active:bg-slate-600 active:text-white"
-          >
-            submit
-          </button>
+          <Button2 arr={[setid]} action={DeteleRelative} object={id} />
         </div>
       )}
       {Sua && (
         <div className="flex flex-col gap-5 h-20 m-5 -translate-y-10">
-          <input
-            value={id}
-            type="text"
-            onChange={(e) => {
-              setid(e.target.value);
-            }}
-            className="border-black border-2 border-solid w-60 h-10 p-3 rounded-md"
+          <Input
+            option={id}
+            setOption={setid}
             placeholder="Enter Your ID Relative"
           />
-          <input
-            value={name}
-            type="text"
-            onChange={(e) => {
-              setname(e.target.value);
-            }}
-            className="border-black border-2 border-solid w-60 h-10 p-3 rounded-md"
+          <Input
+            option={name}
+            setOption={setname}
             placeholder="Enter Your name Relative"
           />
           <div className="flex gap-5">
-            <input
-              value={age}
-              type="text"
-              onChange={(e) => {
-                setage(parseInt(e.target.value));
-              }}
-              className="border-black border-2 border-solid w-60 h-10 p-3 rounded-md"
+            <Input
+              option={age}
+              setOption={setage}
               placeholder="Enter Your Age Relative"
             />
             {dsemployee}
           </div>
-
-          <button
-            onClick={() => {
-              dispatch(
-                FixRelative({
-                  id: id,
-                  name: name,
-                  age: age,
-                  idEmployee: idEmployee,
-                })
-              );
-              setid("");
-              setname("");
-              setage("");
-              setidEmployee("");
-            }}
-            className="h-10 w-32 border-black uppercase border-2 hover:font-bold 
-          border-solid rounded-lg active:bg-slate-600 active:text-white"
-          >
-            submit
-          </button>
+          <Button2
+            arr={[setid, setage, setname, setidEmployee]}
+            action={FixRelative}
+            object={{ id: id, name: name, age: age, idEmployee: idEmployee }}
+          />
         </div>
       )}
       <div className=" translate-y-20">

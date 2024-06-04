@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Department, RemainngEmployee } from "../redux/Selection";
+import Button1 from "../Button/Button1";
+import Button2 from "../Button/Button2";
+import Input from "../Input";
 import {
   AddEmployee,
   Deteleemployee,
@@ -40,149 +43,78 @@ const Index = () => {
     <div className="w-full flex flex-col gap-5 gap-5 border-2 border-black border-solid">
       <h1>Employee</h1>
       <div className="flex gap-5 w-full h-12  m-5">
-        <button
-          className="h-full w-32 border-black uppercase border-2 hover:font-bold
-          border-solid rounded-lg active:bg-slate-600 active:text-white"
-          onClick={() => {
-            setthem(!Them);
-            setsua(false);
-            setxoa(false);
-            setid("");
-            setname("");
-            setIdDepartment("");
-          }}
-        >
-          Thêm
-        </button>
-        <button
-          className="h-full w-32 border-black uppercase border-2 hover:font-bold
-          border-solid rounded-lg active:bg-slate-600 active:text-white"
-          onClick={() => {
-            setxoa(!Xoa);
-            setthem(false);
-            setsua(false);
-            setid("");
-            setname("");
-            setIdDepartment("");
-          }}
-        >
-          Xóa
-        </button>
-        <button
-          className="h-full w-32 border-black uppercase border-2 hover:font-bold
-          border-solid rounded-lg active:bg-slate-600 active:text-white"
-          onClick={() => {
-            setsua(!Sua);
-            setthem(false);
-            setxoa(false);
-            setid("");
-            setname("");
-            setIdDepartment("");
-          }}
-        >
-          Sửa
-        </button>
+        <Button1
+          value="Thêm"
+          value1={Them}
+          arr={[setid, setname, setIdDepartment]}
+          setthem={setthem}
+          setxoa={setxoa}
+          setsua={setsua}
+        />
+        <Button1
+          value="Xóa"
+          value1={Xoa}
+          arr={[setid, setname, setIdDepartment]}
+          setthem={setthem}
+          setxoa={setxoa}
+          setsua={setsua}
+        />
+        <Button1
+          value="Sửa"
+          value1={Sua}
+          arr={[setid, setname, setIdDepartment]}
+          setthem={setthem}
+          setxoa={setxoa}
+          setsua={setsua}
+        />
       </div>
       {Them && (
         <div className="flex flex-col gap-5 h-20 m-5">
-          <input
-            value={name}
-            type="text"
-            onChange={(e) => {
-              setname(e.target.value);
-            }}
-            className="border-black border-2 border-solid w-60 h-10 p-3 rounded-md"
+          <Input
+            option={name}
+            setOption={setname}
             placeholder="Enter Your name Employee"
           />
           {dsdepartment}
-
-          <button
-            onClick={() => {
-              // dispatch(EmployeeSlice.actions.addEmployee({
-              //   id:Employee1.length+1,
-              //   name:name,
-              //   idDepartment:idDepartment
-              // }))
-              dispatch(
-                AddEmployee({
-                  name: name,
-                  idDepartment: idDepartment,
-                  relatives: [],
-                })
-              );
-              setname("");
-              setIdDepartment("");
-            }}
-            className="h-10 w-32 border-black uppercase border-2 hover:font-bold
-          border-solid rounded-lg active:bg-slate-600 active:text-white"
-          >
-            submit
-          </button>
+          <Button2
+            arr={[setIdDepartment, setname]}
+            action={AddEmployee}
+            object={{ name: name, idDepartment: idDepartment, relatives: [] }}
+          />
         </div>
       )}
       {Xoa && (
         <div className="flex flex-col gap-5 h-20 m-5">
-          <input
-            type="text"
-            value={id}
-            onChange={(e) => {
-              setid(e.target.value);
-            }}
-            className="border-black border-2 border-solid w-60 h-10 p-3 rounded-md"
+          <Input
+            option={id}
+            setOption={setid}
             placeholder="Enter Your ID Employee"
           />
-
-          <button
-            onClick={() => {
-              dispatch(Deteleemployee(parseInt(id)));
-              setid("");
-              setIdDepartment("");
-            }}
-            className="h-10 w-32 border-black uppercase border-2 hover:font-bold
-          border-solid rounded-lg active:bg-slate-600 active:text-white"
-          >
-            submit
-          </button>
+          <Button2
+            arr={[setid, setIdDepartment]}
+            action={Deteleemployee}
+            object={id}
+          />
         </div>
       )}
       {Sua && (
         <div className="flex flex-col gap-5 h-20 m-5 -translate-y-5">
-          <input
-            value={id}
-            type="text"
-            onChange={(e) => {
-              setid(e.target.value);
-            }}
-            className="border-black border-2 border-solid w-60 h-10 p-3 rounded-md"
+          <Input
+            option={id}
+            setOption={setid}
             placeholder="Enter Your ID Employee"
           />
-          <input
-            type="text"
-            onChange={(e) => {
-              setname(e.target.value);
-            }}
-            className="border-black border-2 border-solid w-60 h-10 p-3 rounded-md"
-            placeholder="Enter Your name Employee"
+          <Input
+            option={name}
+            setOption={setname}
+            placeholder="Enter Your ID Employee"
           />
           {dsdepartment}
-          <button
-            onClick={() => {
-              dispatch(
-                FixEmployee({
-                  id: id,
-                  name: name,
-                  IdDepartment: idDepartment,
-                })
-              );
-              setid("");
-              setname("");
-              setIdDepartment("");
-            }}
-            className="h-10 w-32 border-black uppercase border-2 hover:font-bold
-          border-solid rounded-lg active:bg-slate-600 active:text-white"
-          >
-            submit
-          </button>
+          <Button2
+            arr={[setid, setname, setIdDepartment]}
+            action={FixEmployee}
+            object={{ id: id, name: name, IdDepartment: idDepartment }}
+          />
         </div>
       )}
       <div className=" translate-y-20">
