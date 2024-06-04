@@ -1,7 +1,7 @@
 //import React from 'react'
 
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Department, RemainngEmployee } from "../redux/Selection";
 import Button1 from "../Button/Button1";
 import Button2 from "../Button/Button2";
@@ -13,9 +13,6 @@ import {
 } from "../redux/EmployeeSlice";
 const Index = () => {
   const Employee1 = useSelector(RemainngEmployee);
-  // console.log(Employee2)
-  // const Employee1=useSelector(Employee)
-  const dispatch = useDispatch();
   const department = useSelector(Department);
   const [Them, setthem] = useState(false);
   const [Xoa, setxoa] = useState(false);

@@ -91,7 +91,7 @@ export const AddEmployee = createAsyncThunk(
 );
 export const Deteleemployee = createAsyncThunk(
   "employee/Deteleemployee",
-  async (data1, { dispatch, getState }) => {
+  async (data1, { dispatch }) => {
     const res = await fetch(`${url}/deleteall/${data1}`, {
       method: "DELETE",
       headers: {

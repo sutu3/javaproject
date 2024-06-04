@@ -1,7 +1,6 @@
 const url = "http://26.232.136.42:8080/api/department";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import EmployeeSlice,{removeRelativebyEmployee} from "./EmployeeSlice";
-im
 const DepartmentSlice = createSlice({
   name: "department",
   initialState: {

@@ -1,7 +1,7 @@
 //import React from 'react'
 
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import {
   AddRelative,
   DeteleRelative,
@@ -12,7 +12,6 @@ import Button2 from "../Button/Button2";
 import Input from "../Input";
 import { Relative, Employee, RemainngRelative } from "../redux/Selection";
 const Index = () => {
-  const dispatch = useDispatch();
   const relative1 = useSelector(Relative);
   const relative = useSelector(RemainngRelative);
   console.log(relative1);
