@@ -1,6 +1,7 @@
 const url = "http://26.232.136.42:8080/api/department";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import EmployeeSlice,{removeRelativebyEmployee} from "./EmployeeSlice";
+import RelativeSlice from "./RelativeSlice";
 const DepartmentSlice = createSlice({
   name: "department",
   initialState: {
@@ -33,6 +34,8 @@ const DepartmentSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+    // .addCase(ChangeFilter.fulfilled,(state, action) => {
+    // })
       .addCase(FetchDepartment.fulfilled, (state, action) => {
         state.department = action.payload;
       })
@@ -126,6 +129,18 @@ export const FixDepartment = createAsyncThunk(
     });
     const data = await res.json();
     return data;
+  }
+);
+export const ChangeFilter = createAsyncThunk(
+  'department/changeFilter',
+  async (data,{getState,dispatch}) => {
+    // Perform your asynchronous operations here (e.g., API calls)
+    // ...
+    await dispatch(DepartmentSlice.actions.changefilter(data))
+    await dispatch(EmployeeSlice.actions.changefilter(data))
+    await dispatch(RelativeSlice.actions.changefilter(data))
+    console.log(getState())
+    return data; 
   }
 );
 export default DepartmentSlice;

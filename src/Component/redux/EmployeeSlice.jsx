@@ -4,6 +4,7 @@ const url = "http://26.232.136.42:8080/api/employee";
 const EmployeeSlice = createSlice({
   name: "employee",
   initialState: {
+    filterid:"",
     employee: [],
   },
   reducers: {
@@ -23,6 +24,11 @@ const EmployeeSlice = createSlice({
             }
           : el
       );
+    },
+    changefilter: (state, action) => {
+      state.filterid === action.payload
+        ? (state.filterid = "")
+        : (state.filterid = action.payload);
     },
   },
   extraReducers: (builder) => {
@@ -45,7 +51,7 @@ const EmployeeSlice = createSlice({
             ? {
                 ...el,
                 name: action.payload.name,
-                IdDepartment: action.payload.IdDepartment,
+                idDepartment: action.payload.idDepartment,
               }
             : el
         );
@@ -115,7 +121,7 @@ export const FixEmployee = createAsyncThunk(
       },
       body: JSON.stringify({
         name: data1.name,
-        idDepartment: data1.IdDepartment,
+        idDepartment: data1.idDepartment,
       }),
     });
     const data = await res.json();

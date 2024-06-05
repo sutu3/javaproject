@@ -110,7 +110,7 @@ const Index = () => {
           <Button2
             arr={[setid, setname, setIdDepartment]}
             action={FixEmployee}
-            object={{ id: id, name: name, IdDepartment: idDepartment }}
+            object={{ id: id, name: name, idDepartment: idDepartment }}
           />
         </div>
       )}

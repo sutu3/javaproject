@@ -6,6 +6,7 @@ import Input from "../Input/index.jsx";
 import Button1 from "../Button/Button1.jsx";
 import Button2 from "../Button/Button2.jsx";
 import DepartmentSlice, {
+  ChangeFilter,
   FixDepartment,
   AddDepartment,
   DeteleDepartment,
@@ -107,7 +108,7 @@ const Index = () => {
             <li
               onClick={() => {
                 setid(el.id);
-                dispatch(DepartmentSlice.actions.changefilter(el.id));
+                dispatch(ChangeFilter(el.id));
               }}
               key={el.id}
               style={{

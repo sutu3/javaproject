@@ -3,6 +3,7 @@ const url = "http://26.232.136.42:8080/api/relative";
 const RelativeSlice = createSlice({
   name: "relative",
   initialState: {
+    filterid:"",
     relative: [],
   },
   reducers: {
@@ -13,6 +14,11 @@ const RelativeSlice = createSlice({
       state.relative = state.relative.filter(
         (el) => el.id !== parseInt(action.payload)
       );
+    },
+    changefilter: (state, action) => {
+      state.filterid === action.payload
+        ? (state.filterid = "")
+        : (state.filterid = action.payload);
     },
     fixRelative: (state, action) => {
       state.relative = state.relative.map((el) =>
