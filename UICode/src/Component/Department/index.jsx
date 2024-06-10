@@ -128,7 +128,7 @@ const Index = () => {
                 <span style={{ fontWeight: "bold", marginRight: "10px" }}>
                   Department name:
                 </span>
-                {el.name}{" "}
+                {el.departmentName}{" "}
               </div>
             </li>
           ))}

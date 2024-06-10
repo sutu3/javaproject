@@ -12,8 +12,8 @@ function App() {
   const dipatch=useDispatch()
 useEffect(()=>{
 dipatch(FetchDepartment())
-dipatch(FetchEmployee())
-dipatch(FetchRelative())
+// dipatch(FetchEmployee())
+// dipatch(FetchRelative())
 },[])
   return (
     <div className="flex gap-3 h-[1000px] -translate-x-20">
